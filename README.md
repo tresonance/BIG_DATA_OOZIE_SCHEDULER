@@ -10,7 +10,7 @@
   <hr>
 
   <hr>
-  <p>My owwn angular ts - backend server application yo schedule oozie job</p>
+  <p>My own angular ts - backend server application to schedule oozie job</p>
   <h3><a href="http://localhost:3000/" >http://localhost:3000/</a></h3>
   <img src="imgs/api.png"  alt="nhdfs webui " />
   <hr>
