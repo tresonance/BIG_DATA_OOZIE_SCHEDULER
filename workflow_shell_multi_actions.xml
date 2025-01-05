@@ -1,0 +1,39 @@
+<workflow-app name="wrk_ibrahima_shell_actions" xmlns="uri:oozie:workflow:0.5">
+    <start to="wrk_ibrahima_shell_action_1"/>
+    
+    <action name="wrk_ibrahima_shell_action_1">
+        <shell xmlns="uri:oozie:shell-action:0.3">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            
+            <!-- Execute script locally -->
+            <exec>script.sh</exec>
+
+            <!-- Map HDFS file to local script -->
+            <file>hdfs://localhost:9000/user/RUNS_OOZIE/scripts/shell/script.sh#script.sh</file>
+        </shell>
+        <ok to="wrk_ibrahima_shell_action_2"/>
+        <error to="fail"/>
+    </action>
+
+    <action name="wrk_ibrahima_shell_action_2">
+        <shell xmlns="uri:oozie:shell-action:0.3">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            
+            <!-- Execute script locally -->
+            <exec>date.sh</exec>
+
+            <!-- Map HDFS file to local script -->
+            <file>hdfs://localhost:9000/user/RUNS_OOZIE/scripts/shell/date.sh#date.sh</file>
+        </shell>
+        <ok to="end"/>
+        <error to="fail"/>
+    </action>
+
+    <kill name="fail">
+        <message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+
+    <end name="end"/>
+</workflow-app>

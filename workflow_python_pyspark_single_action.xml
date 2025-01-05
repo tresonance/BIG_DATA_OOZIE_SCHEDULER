@@ -1,0 +1,26 @@
+<workflow-app name="wrk_ibrahima_python_action_1" xmlns="uri:oozie:workflow:0.5">
+    <start to="wrk_ibrahima_python_action_1"/>
+
+    <action name="wrk_ibrahima_python_action_1">
+        <shell xmlns="uri:oozie:shell-action:0.3">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+
+            <exec>hdfs://localhost:9000/user/RUNS_OOZIE/launchers_pyspark/launch_only_python_pyspark_wrk.sh</exec>
+            <argument>${myPythonPysparkScriptCreate}</argument>
+           
+            <!-- file -->
+            <file>hdfs://localhost:9000/user/RUNS_OOZIE/launchers_pyspark/launch_only_python_pyspark_wrk.sh</file>
+            <file>${myPythonPysparkScriptCreate}</file>
+
+        </shell>
+        <ok to="end"/>
+        <error to="fail"/>
+    </action>
+
+    <kill name="fail">
+        <message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+
+    <end name="end"/>
+</workflow-app>

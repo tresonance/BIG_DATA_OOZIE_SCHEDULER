@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <property><name>nameNode</name><value>hdfs://localhost:9000</value></property>
+  <property><name>jobTracker</name><value>localhost:8032</value></property>
+  <property><name>queueName</name><value>default</value></property>
+  <property><name>user.name</name><value>ibrahima</value></property>
+  <property><name>configSparkOptions</name><value>--executor-memory 4g --queue default --num-executors 4 --executor-cores 2 --driver-memory 4g --master yarn --conf spark.yarn.executor.memoryOverhead=512 --conf spark.yarn.driver.memoryOverhead=512 --conf spark.pyspark.driver.python=python3 --conf spark.pyspark.python=python3</value></property>
+  <property><name>myPythonPysparkScript</name><value>hdfs://localhost:9000/user/RUNS_OOZIE/scripts/python/create_dataframe.py</value></property>
+  <property><name>paramJsonFile</name><value>${nameNode}/user/RUNS_OOZIE/json/file.json</value></property>
+  <property><name>day</name><value>2023-09-12</value></property>
+  <property><name>who</name><value></value></property>
+  <property><name>mode</name><value>TEST</value></property>
+  <property><name>oozie.use.system.libpath</name><value>false</value></property>
+  <property><name>worflows_dir_ib_hdfsr</name><value>RUNS_OOZIE</value></property>
+  <property><name>oozie.wf.application.path</name><value>${nameNode}/user/${worflows_dir_ib_hdfsr}/workflows/workflow_shell_single_action.xml</value></property>
+</configuration>
